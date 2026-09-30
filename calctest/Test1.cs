@@ -32,7 +32,7 @@ namespace TestCalculator
         private void ExecuteRowTest(int rowId)
         {
             DataRow[] foundRows = table.Select("Id = " + rowId);
-            Assert.IsTrue(foundRows.Length > 0, "Строка с Id=" + rowId + " не найдена в базе данных.");
+            Assert.IsTrue(foundRows.Length > 0, "Стрічка з Id=" + rowId + " не знайдена в базі данних.");
             DataRow row = foundRows[0];
 
             string testCaseName = row["TestCaseName"] != DBNull.Value ? row["TestCaseName"].ToString() : "";
@@ -67,13 +67,13 @@ namespace TestCalculator
             if (!string.IsNullOrEmpty(expectedError))
             {
                 bool hasError = threwException || CalcClass.lastError == expectedError;
-                Assert.IsTrue(hasError, "[" + testCaseName + "] Ожидалась ошибка '" + expectedError + "'.");
+                Assert.IsTrue(hasError, "[" + testCaseName + "] Очікувалися помилка '" + expectedError + "'.");
             }
             else
             {
-                Assert.IsFalse(threwException, "[" + testCaseName + "] Метод завершился исключением.");
-                Assert.IsNotNull(expectedResult, "[" + testCaseName + "] ExpectedResult не должен быть пустым.");
-                Assert.AreEqual(expectedResult.Value, actualResult, "[" + testCaseName + "] Ошибка в умножении: " + a + " * " + b);
+                Assert.IsFalse(threwException, "[" + testCaseName + "] Метод завершився виключенням.");
+                Assert.IsNotNull(expectedResult, "[" + testCaseName + "] ExpectedResult не має бути порожнім.");
+                Assert.AreEqual(expectedResult.Value, actualResult, "[" + testCaseName + "] Помилка в множенні: " + a + " * " + b);
             }
         }
 
